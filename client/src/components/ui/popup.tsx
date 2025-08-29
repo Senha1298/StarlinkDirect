@@ -48,7 +48,7 @@ export default function Popup({ isOpen, onClose, type, onContinue }: PopupProps)
             className="bg-card border border-border rounded-sm p-8 max-w-md mx-4"
           >
             <div className="text-center">
-              <div className="w-16 h-16 bg-gradient-to-br from-white via-gray-100 to-gray-300 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg" style={{
+              <div className="w-16 h-16 bg-gradient-to-br from-white via-gray-100 to-gray-300 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg animated-icon-shadow" style={{
                 boxShadow: '0 8px 20px rgba(0,0,0,0.3), inset 0 2px 4px rgba(255,255,255,0.8), inset 0 -2px 4px rgba(0,0,0,0.2)'
               }}>
                 <IconComponent className="w-8 h-8 text-gray-800 drop-shadow-sm" style={{
