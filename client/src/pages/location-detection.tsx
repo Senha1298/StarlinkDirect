@@ -24,8 +24,8 @@ export default function LocationDetection() {
             transition={{ duration: 0.7, ease: "easeOut" }}
             className="max-w-4xl mx-auto"
           >
-            <div className="mb-12">
-              <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight tracking-tight">
+            <div className="mb-8">
+              <h1 className="text-3xl md:text-5xl font-bold mb-4 leading-tight tracking-tight">
                 LOCATION VERIFICATION<br />
                 <span className="bg-gradient-to-r from-white via-gray-200 to-white bg-clip-text text-transparent">
                   SERVICE AVAILABILITY
@@ -33,18 +33,18 @@ export default function LocationDetection() {
               </h1>
             </div>
             
-            <div className="professional-card rounded-3xl p-12 mb-8">
-              <div className="mb-10">
-                <div className="w-40 h-40 mx-auto mb-8 glass-effect rounded-full flex items-center justify-center">
-                  <MapPin className="w-20 h-20 text-white" />
+            <div className="professional-card rounded-sm p-8 mb-6">
+              <div className="mb-8">
+                <div className="w-32 h-32 mx-auto mb-6 glass-effect rounded-sm flex items-center justify-center">
+                  <MapPin className="w-16 h-16 text-white" />
                 </div>
               </div>
               
-              <h2 className="text-3xl md:text-4xl font-medium mb-8 text-white/95" data-testid="location-question">
+              <h2 className="text-xl md:text-2xl font-medium mb-6 text-white/95" data-testid="location-question">
                 Confirm your location
               </h2>
               
-              <p className="text-2xl mb-12 font-medium text-white/80" data-testid="detected-location">
+              <p className="text-lg mb-8 font-medium text-white/80" data-testid="detected-location">
                 {isLoading 
                   ? "Detecting your location..." 
                   : error 
@@ -53,10 +53,10 @@ export default function LocationDetection() {
                 }
               </p>
               
-              <div className="flex gap-6 justify-center flex-wrap">
+              <div className="flex gap-4 justify-center flex-wrap">
                 <button
                   onClick={handleConfirm}
-                  className="starlink-button-primary py-4 px-10 rounded-2xl text-lg font-medium"
+                  className="starlink-button-primary py-3 px-6 rounded-sm text-base font-medium"
                   data-testid="button-confirm-location"
                   disabled={isLoading}
                 >
@@ -64,7 +64,7 @@ export default function LocationDetection() {
                 </button>
                 <button
                   onClick={handleConfirm}
-                  className="starlink-button-secondary py-4 px-10 rounded-2xl text-lg font-medium"
+                  className="starlink-button-secondary py-3 px-6 rounded-sm text-base font-medium"
                   data-testid="button-different-location"
                   disabled={isLoading}
                 >

@@ -20,7 +20,7 @@ export default function Header() {
           <button className="text-white/90 hover:text-white transition-colors font-medium text-sm tracking-wide">
             SIGN IN
           </button>
-          <button className="bg-white text-black px-4 py-2 rounded font-medium text-sm tracking-wide hover:bg-white/90 transition-colors">
+          <button className="bg-white text-black px-4 py-2 rounded-sm font-medium text-sm tracking-wide hover:bg-white/90 transition-colors">
             ORDER NOW
           </button>
         </div>

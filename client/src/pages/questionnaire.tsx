@@ -78,8 +78,8 @@ export default function Questionnaire() {
             transition={{ duration: 0.7, ease: "easeOut" }}
             className="max-w-5xl mx-auto"
           >
-            <div className="mb-12">
-              <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight tracking-tight">
+            <div className="mb-8">
+              <h1 className="text-3xl md:text-5xl font-bold mb-4 leading-tight tracking-tight">
                 {question.title}<br />
                 <span className="bg-gradient-to-r from-white via-gray-200 to-white bg-clip-text text-transparent">
                   {question.subtitle}
@@ -87,17 +87,17 @@ export default function Questionnaire() {
               </h1>
             </div>
             
-            <div className="professional-card rounded-3xl p-10 mb-8 max-w-4xl mx-auto">
-              <h2 className="text-2xl md:text-4xl font-medium mb-12 leading-relaxed text-white/95" data-testid={`question-${currentQuestion + 1}`}>
+            <div className="professional-card rounded-sm p-8 mb-6 max-w-3xl mx-auto">
+              <h2 className="text-xl md:text-2xl font-medium mb-8 leading-relaxed text-white/95" data-testid={`question-${currentQuestion + 1}`}>
                 {question.question}
               </h2>
               
-              <div className={`space-y-5 ${question.options.length === 4 ? 'md:grid md:grid-cols-2 md:gap-6 md:space-y-0' : ''}`}>
+              <div className={`space-y-4 ${question.options.length === 4 ? 'md:grid md:grid-cols-2 md:gap-4 md:space-y-0' : ''}`}>
                 {question.options.map((option, index) => (
                   <button
                     key={index}
                     onClick={handleAnswerClick}
-                    className={`w-full py-5 px-8 rounded-2xl text-lg font-medium transition-all duration-300 transform hover:scale-[1.02] hover:shadow-lg ${
+                    className={`w-full py-4 px-6 rounded-sm text-base font-medium transition-all duration-300 transform hover:scale-[1.02] hover:shadow-lg ${
                       index === 0 
                         ? 'starlink-button-primary' 
                         : 'starlink-button-secondary'
