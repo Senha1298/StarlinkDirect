@@ -1,14 +1,24 @@
 import { useLocation } from 'wouter';
 import { motion } from 'framer-motion';
 import { Smartphone } from 'lucide-react';
+import { useState, useEffect } from 'react';
 import Header from '@/components/header';
-import { useDeviceDetection } from '@/hooks/use-device-detection';
 
 export default function DeviceDetection() {
   const [, setLocation] = useLocation();
-  const { device, isLoading } = useDeviceDetection();
+  const [isChecking, setIsChecking] = useState(true);
+  const [isCompatible, setIsCompatible] = useState(false);
 
-  const handleConfirm = () => {
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsChecking(false);
+      setIsCompatible(true);
+    }, 5000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  const handleContinue = () => {
     setLocation('/location-detection');
   };
 
@@ -35,37 +45,35 @@ export default function DeviceDetection() {
             
             <div className="professional-card rounded-sm p-8 mb-6">
               <div className="mb-8">
-                <div className="w-32 h-32 mx-auto mb-6 glass-effect rounded-sm flex items-center justify-center">
-                  <Smartphone className="w-16 h-16 text-white" />
-                </div>
+                <Smartphone className="w-16 h-16 text-white mx-auto mb-6" />
               </div>
               
-              <h2 className="text-xl md:text-2xl font-medium mb-6 text-white/95" data-testid="device-question">
-                Is this your device?
-              </h2>
-              
-              <p className="text-lg mb-8 font-medium text-white/80" data-testid="detected-device">
-                {isLoading ? "Detecting device..." : device}
-              </p>
-              
-              <div className="flex gap-4 justify-center flex-wrap">
-                <button
-                  onClick={handleConfirm}
-                  className="starlink-button-primary py-3 px-6 rounded-sm text-base font-medium"
-                  data-testid="button-confirm-device"
-                  disabled={isLoading}
-                >
-                  YES, THAT'S CORRECT
-                </button>
-                <button
-                  onClick={handleConfirm}
-                  className="starlink-button-secondary py-3 px-6 rounded-sm text-base font-medium"
-                  data-testid="button-different-device"
-                  disabled={isLoading}
-                >
-                  NO, DIFFERENT DEVICE
-                </button>
-              </div>
+              {isChecking ? (
+                <>
+                  <div className="w-8 h-8 loading-spinner mx-auto mb-6"></div>
+                  <p className="text-lg mb-8 font-medium text-white/80" data-testid="checking-status">
+                    Checking if your device is compatible with our chip...
+                  </p>
+                </>
+              ) : (
+                <>
+                  <h2 className="text-xl md:text-2xl font-medium mb-6 text-white/95" data-testid="compatibility-result">
+                    ✓ Your device is compatible!
+                  </h2>
+                  
+                  <p className="text-lg mb-8 font-medium text-white/80">
+                    Great! Your device supports our satellite chip technology.
+                  </p>
+                  
+                  <button
+                    onClick={handleContinue}
+                    className="starlink-button-primary py-3 px-6 rounded-sm text-base font-medium"
+                    data-testid="button-continue"
+                  >
+                    CONTINUE
+                  </button>
+                </>
+              )}
             </div>
           </motion.div>
         </div>
