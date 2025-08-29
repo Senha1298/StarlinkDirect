@@ -53,8 +53,8 @@ export default function Popup({ isOpen, onClose, type, onContinue }: PopupProps)
                 <motion.div 
                   className="absolute inset-0 pointer-events-none"
                   style={{
-                    background: 'transparent',
-                    filter: 'drop-shadow(0 0 30px rgba(255,255,255,0.8)) drop-shadow(0 0 60px rgba(255,255,255,0.4)) drop-shadow(0 0 90px rgba(255,255,255,0.2))'
+                    background: 'radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%)',
+                    boxShadow: '0 0 30px rgba(255,255,255,0.8), 0 0 60px rgba(255,255,255,0.4), 0 0 90px rgba(255,255,255,0.2)'
                   }}
                   animate={{
                     y: [0, -8, 0],
