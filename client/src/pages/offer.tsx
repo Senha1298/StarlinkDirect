@@ -1,6 +1,15 @@
 import { motion } from 'framer-motion';
 import { Check, Shield, Zap, Globe } from 'lucide-react';
+import { useEffect } from 'react';
 import Header from '@/components/header';
+
+// Declare global ShopifyBuy types
+declare global {
+  interface Window {
+    ShopifyBuy?: any;
+  }
+  const ShopifyBuy: any;
+}
 
 const plans = [
   {
@@ -34,21 +43,172 @@ const plans = [
 ];
 
 export default function Offer() {
-  const handleOrderClick = (planId: string) => {
-    const checkoutUrls = {
-      'standard': 'https://starpayments.myshopify.com/checkouts/cn/hWN2LlpATXC5StXJDyAB240I',
-      'unlimited': 'https://starpayments.myshopify.com/checkouts/cn/hWN2LlpATXC5StXJDyAB240I'
+  useEffect(() => {
+    // Load Shopify Buy Button script for unlimited plan
+    const loadShopifyScript = () => {
+      if (window.ShopifyBuy) {
+        if (window.ShopifyBuy.UI) {
+          initShopifyBuyButton();
+        } else {
+          return;
+        }
+      } else {
+        const script = document.createElement('script');
+        script.async = true;
+        script.src = 'https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js';
+        document.head.appendChild(script);
+        script.onload = initShopifyBuyButton;
+      }
     };
-    
-    const url = checkoutUrls[planId as keyof typeof checkoutUrls];
-    if (url) {
-      window.open(url, '_blank');
+
+    const initShopifyBuyButton = () => {
+      const client = ShopifyBuy.buildClient({
+        domain: 'wfgxax-00.myshopify.com',
+        storefrontAccessToken: '0b635f4e01575574fca675f598cd3275',
+      });
+      
+      ShopifyBuy.UI.onReady(client).then(function (ui) {
+        ui.createComponent('product', {
+          id: '7832854233167',
+          node: document.getElementById('shopify-product-component'),
+          moneyFormat: '%24%7B%7Bamount%7D%7D',
+          options: {
+            "product": {
+              "styles": {
+                "product": {
+                  "@media (min-width: 601px)": {
+                    "max-width": "calc(25% - 20px)",
+                    "margin-left": "20px",
+                    "margin-bottom": "50px"
+                  }
+                },
+                "button": {
+                  ":hover": {
+                    "background-color": "#000000"
+                  },
+                  "background-color": "#000000",
+                  ":focus": {
+                    "background-color": "#000000"
+                  },
+                  "padding-left": "81px",
+                  "padding-right": "81px"
+                }
+              },
+              "buttonDestination": "checkout",
+              "contents": {
+                "img": false,
+                "title": false,
+                "price": false
+              },
+              "text": {
+                "button": "Buy now"
+              }
+            },
+            "productSet": {
+              "styles": {
+                "products": {
+                  "@media (min-width: 601px)": {
+                    "margin-left": "-20px"
+                  }
+                }
+              }
+            },
+            "modalProduct": {
+              "contents": {
+                "img": false,
+                "imgWithCarousel": true,
+                "button": false,
+                "buttonWithQuantity": true
+              },
+              "styles": {
+                "product": {
+                  "@media (min-width: 601px)": {
+                    "max-width": "100%",
+                    "margin-left": "0px",
+                    "margin-bottom": "0px"
+                  }
+                },
+                "button": {
+                  ":hover": {
+                    "background-color": "#000000"
+                  },
+                  "background-color": "#000000",
+                  ":focus": {
+                    "background-color": "#000000"
+                  },
+                  "padding-left": "81px",
+                  "padding-right": "81px"
+                }
+              },
+              "text": {
+                "button": "Add to cart"
+              }
+            },
+            "option": {},
+            "cart": {
+              "styles": {
+                "button": {
+                  ":hover": {
+                    "background-color": "#000000"
+                  },
+                  "background-color": "#000000",
+                  ":focus": {
+                    "background-color": "#000000"
+                  }
+                }
+              },
+              "text": {
+                "total": "Subtotal",
+                "button": "Checkout"
+              }
+            },
+            "toggle": {
+              "styles": {
+                "toggle": {
+                  "background-color": "#000000",
+                  ":hover": {
+                    "background-color": "#000000"
+                  },
+                  ":focus": {
+                    "background-color": "#000000"
+                  }
+                }
+              }
+            }
+          },
+        });
+      });
+    };
+
+    loadShopifyScript();
+  }, []);
+
+  const handleOrderClick = (planId: string) => {
+    if (planId === 'unlimited') {
+      // Trigger Shopify buy button for unlimited plan
+      const shopifyButton = document.querySelector('#shopify-product-component button');
+      if (shopifyButton) {
+        shopifyButton.click();
+      }
+    } else {
+      // Keep existing behavior for standard plan
+      const checkoutUrls = {
+        'standard': 'https://starpayments.myshopify.com/checkouts/cn/hWN2LlpATXC5StXJDyAB240I'
+      };
+      
+      const url = checkoutUrls[planId as keyof typeof checkoutUrls];
+      if (url) {
+        window.open(url, '_blank');
+      }
     }
   };
 
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Header />
+      
+      {/* Hidden Shopify component for unlimited plan */}
+      <div id="shopify-product-component" style={{ display: 'none' }}></div>
       
       <section className="min-h-screen pt-36 flex items-center justify-center starlink-gradient">
         <div className="container mx-auto px-6 text-center max-w-7xl">
