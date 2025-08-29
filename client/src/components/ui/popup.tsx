@@ -51,9 +51,10 @@ export default function Popup({ isOpen, onClose, type, onContinue }: PopupProps)
               <div className="relative mx-auto mb-6 w-16 h-16">
                 {/* Sombra brilhante animada atrás */}
                 <motion.div 
-                  className="absolute inset-0 rounded-full"
+                  className="absolute inset-0 pointer-events-none"
                   style={{
-                    boxShadow: '0 0 30px rgba(255,255,255,0.8), 0 0 60px rgba(255,255,255,0.4), 0 0 90px rgba(255,255,255,0.2)'
+                    background: 'transparent',
+                    filter: 'drop-shadow(0 0 30px rgba(255,255,255,0.8)) drop-shadow(0 0 60px rgba(255,255,255,0.4)) drop-shadow(0 0 90px rgba(255,255,255,0.2))'
                   }}
                   animate={{
                     y: [0, -8, 0],
