@@ -90,6 +90,15 @@
   h2 {
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
   }
+
+  /* Remove shadow from black text on white backgrounds */
+  .starlink-button-primary,
+  .starlink-button-primary *,
+  [style*="color: #000"],
+  [style*="color: #000000"],
+  [style*="color: black"] {
+    text-shadow: none !important;
+  }
 }
 
 .starlink-gradient {
