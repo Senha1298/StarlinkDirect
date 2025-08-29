@@ -48,13 +48,36 @@ export default function Popup({ isOpen, onClose, type, onContinue }: PopupProps)
             className="bg-card border border-border rounded-sm p-8 max-w-md mx-4"
           >
             <div className="text-center">
-              <div className="w-16 h-16 bg-gradient-to-br from-white via-gray-100 to-gray-300 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg" style={{
-                boxShadow: '0 8px 20px rgba(0,0,0,0.3), inset 0 2px 4px rgba(255,255,255,0.8), inset 0 -2px 4px rgba(0,0,0,0.2)'
-              }}>
-                <IconComponent className="w-8 h-8 text-gray-800 drop-shadow-sm" style={{
-                  filter: 'brightness(1.2) contrast(1.1)'
-                }} />
-              </div>
+              <motion.div 
+                className="w-16 h-16 bg-gradient-to-br from-white via-gray-100 to-gray-300 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg" 
+                style={{
+                  boxShadow: '0 8px 20px rgba(0,0,0,0.3), inset 0 2px 4px rgba(255,255,255,0.8), inset 0 -2px 4px rgba(0,0,0,0.2)'
+                }}
+                animate={{
+                  y: [0, -5, 0],
+                  rotate: [0, 2, -2, 0]
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              >
+                <motion.div
+                  animate={{
+                    scale: [1, 1.1, 1]
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                >
+                  <IconComponent className="w-8 h-8 text-gray-800 drop-shadow-sm" style={{
+                    filter: 'brightness(1.2) contrast(1.1)'
+                  }} />
+                </motion.div>
+              </motion.div>
               <h3 className="text-2xl font-bold mb-4" data-testid={`popup-title-${type}`}>
                 {content.title}
               </h3>
@@ -63,10 +86,9 @@ export default function Popup({ isOpen, onClose, type, onContinue }: PopupProps)
               </p>
               <button
                 onClick={onContinue}
-                className="w-full bg-white text-black py-3 px-6 rounded-sm text-lg font-medium hover:bg-gray-100 transition-colors shadow-lg"
+                className="w-full bg-white text-black py-3 px-6 rounded-sm text-lg font-medium hover:bg-gray-100 transition-colors"
                 style={{
-                  background: 'linear-gradient(145deg, #ffffff 0%, #f0f0f0 100%)',
-                  boxShadow: '0 4px 15px rgba(255,255,255,0.4), inset 0 1px 0 rgba(255,255,255,0.8)'
+                  background: 'linear-gradient(145deg, #ffffff 0%, #f0f0f0 100%)'
                 }}
                 data-testid={`button-continue-${type}`}
               >
