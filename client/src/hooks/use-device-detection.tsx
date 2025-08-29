@@ -8,6 +8,7 @@ export function useDeviceDetection() {
     const detectDevice = () => {
       const userAgent = navigator.userAgent;
       let detectedDevice = '';
+      
 
       // Helper function to extract device model from user agent
       const extractDeviceModel = (ua: string) => {
@@ -129,12 +130,32 @@ export function useDeviceDetection() {
         else if (userAgent.match(/LG/i)) detectedDevice = 'LG';
         else if (userAgent.match(/HTC/i)) detectedDevice = 'HTC';
         
-        // Generic extraction attempt
+        // Generic extraction attempt for any Android device
         else {
-          const modelMatch = userAgent.match(/Android.*?;\s*([^)]+)/);
-          if (modelMatch && modelMatch[1]) {
-            detectedDevice = modelMatch[1].trim().replace(/Build.*/, '').trim();
-          } else {
+          // Try multiple patterns to extract Android device name
+          const patterns = [
+            /Android.*?;\s*([^;)]+)/i,  // General Android pattern
+            /;\s*([^;)]+)\s*Build/i,    // Device name before Build
+            /;\s*([^;)]+)\s*\)/i,       // Device name before closing parenthesis
+          ];
+          
+          for (const pattern of patterns) {
+            const modelMatch = userAgent.match(pattern);
+            if (modelMatch && modelMatch[1]) {
+              let deviceName = modelMatch[1].trim();
+              // Clean up common unwanted parts
+              deviceName = deviceName.replace(/Build.*/, '').trim();
+              deviceName = deviceName.replace(/wv$/, '').trim();
+              deviceName = deviceName.replace(/Mobile.*/, '').trim();
+              
+              if (deviceName && deviceName.length > 2 && !deviceName.match(/^(Mobile|Safari|Chrome|WebKit)$/i)) {
+                detectedDevice = deviceName;
+                break;
+              }
+            }
+          }
+          
+          if (!detectedDevice) {
             detectedDevice = 'Android Phone';
           }
         }
@@ -151,14 +172,14 @@ export function useDeviceDetection() {
           if (userAgent.match(/iPhone|iPad/i)) {
             detectedDevice = 'iOS Device';
           } else {
-            detectedDevice = 'MacBook';
+            detectedDevice = 'MacBook (Desktop)';
           }
         } else if (userAgent.match(/Windows/i)) {
-          detectedDevice = 'Windows PC';
+          detectedDevice = 'Windows PC (Desktop)';
         } else if (userAgent.match(/Linux/i)) {
-          detectedDevice = 'Linux Computer';
+          detectedDevice = 'Linux Computer (Desktop)';
         } else {
-          detectedDevice = 'Unknown Device';
+          detectedDevice = 'Desktop Computer';
         }
       }
 
