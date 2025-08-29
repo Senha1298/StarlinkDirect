@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Check, Shield, Zap, Globe } from 'lucide-react';
+import { Check, Shield, Zap, Globe, Star } from 'lucide-react';
 import { useEffect } from 'react';
 import Header from '@/components/header';
 
@@ -466,6 +466,73 @@ export default function Offer() {
                 </motion.div>
               ))}
             </div>
+
+            {/* Reviews Section */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.8 }}
+              className="text-center mb-12"
+            >
+              <div className="glass-effect rounded-sm p-8 max-w-5xl mx-auto">
+                <div className="flex items-center justify-center mb-6">
+                  <div className="flex items-center space-x-2 mr-4">
+                    {[...Array(5)].map((_, i) => (
+                      <Star
+                        key={i}
+                        className={`w-6 h-6 ${i < 4 ? 'fill-yellow-400 text-yellow-400' : i === 4 ? 'fill-yellow-400/80 text-yellow-400' : 'text-gray-400'}`}
+                      />
+                    ))}
+                  </div>
+                  <span className="text-2xl font-bold text-white" data-testid="rating-score">4.9</span>
+                  <span className="text-white/70 ml-2">out of 5</span>
+                </div>
+                
+                <h2 className="text-2xl font-bold text-white mb-8">What Our Customers Say</h2>
+                
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {[
+                    { name: "Michael Thompson", location: "Austin, TX", comment: "Got my chip 3 weeks ago and haven't paid a single bill since! Amazing service, exactly as promised." },
+                    { name: "Sarah Williams", location: "London, UK", comment: "I was skeptical at first, but it actually works! Free internet forever with just one payment. Best deal ever!" },
+                    { name: "James Rodriguez", location: "Miami, FL", comment: "The survey took 2 minutes and I got my chip in 5 days. Now my family saves $80/month on internet bills." },
+                    { name: "Emma Johnson", location: "Toronto, CA", comment: "Participated in the promotion last month. The chip arrived fast and setup was super easy. Zero monthly fees!" },
+                    { name: "David Chen", location: "San Francisco, CA", comment: "I can't believe this is real! No more Comcast bills. The satellite connection is actually faster than my old provider." },
+                    { name: "Lisa Anderson", location: "Sydney, AU", comment: "Best decision I made this year. One payment of $19.90 and free internet for life. My friends think I'm crazy!" },
+                    { name: "Robert Miller", location: "Chicago, IL", comment: "The promotion seemed too good to be true, but here I am 2 months later with free unlimited internet. Amazing!" },
+                    { name: "Jennifer Garcia", location: "Los Angeles, CA", comment: "Quick survey, fast delivery, and now I save hundreds per year. Starlink really delivered on their promise." },
+                    { name: "Daniel Smith", location: "Manchester, UK", comment: "Got the chip through this promo. Works perfectly everywhere I go. Finally escaped monthly internet bills!" },
+                    { name: "Michelle Brown", location: "Seattle, WA", comment: "I almost missed this promotion! So glad I found it. Free internet forever changed my budget completely." },
+                    { name: "Christopher Davis", location: "Dublin, IE", comment: "Received my chip last week. The speed is incredible and the fact it's free forever blows my mind." },
+                    { name: "Amanda Wilson", location: "Phoenix, AZ", comment: "This promotion is legitimate! I've had free internet for 6 weeks now. No hidden fees, no surprises." }
+                  ].map((review, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.6, delay: 1 + index * 0.1 }}
+                      className="bg-black/20 rounded-sm p-4 border border-white/10"
+                      data-testid={`review-${index}`}
+                    >
+                      <div className="flex items-center mb-3">
+                        <div className="flex">
+                          {[...Array(5)].map((_, i) => (
+                            <Star
+                              key={i}
+                              className="w-4 h-4 fill-yellow-400 text-yellow-400"
+                            />
+                          ))}
+                        </div>
+                      </div>
+                      <p className="text-white/90 text-sm mb-3 italic">"{review.comment}"</p>
+                      <div className="text-right">
+                        <p className="font-semibold text-white text-sm">{review.name}</p>
+                        <p className="text-white/60 text-xs">{review.location}</p>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
