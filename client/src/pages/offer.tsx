@@ -70,39 +70,33 @@ export default function Offer() {
       ShopifyBuy.UI.onReady(client).then(function (ui: any) {
         ui.createComponent('product', {
           id: '7832854233167',
-          node: document.getElementById('product-component-1756454782760'),
+          node: document.getElementById('product-component-1756455325437'),
           moneyFormat: '%24%7B%7Bamount%7D%7D',
           options: {
             "product": {
               "styles": {
                 "product": {
-                  "width": "100%",
-                  "max-width": "100%",
-                  "margin": "0",
-                  "padding": "0"
+                  "@media (min-width: 601px)": {
+                    "max-width": "calc(25% - 20px)",
+                    "margin-left": "20px",
+                    "margin-bottom": "50px"
+                  }
                 },
                 "button": {
+                  "font-family": "Montserrat, sans-serif",
+                  "font-weight": "bold",
                   "color": "#000000",
                   ":hover": {
                     "color": "#000000",
-                    "background-color": "#f0f0f0"
+                    "background-color": "#e6e6e6"
                   },
                   "background-color": "#ffffff",
                   ":focus": {
-                    "background-color": "#f0f0f0"
+                    "background-color": "#e6e6e6"
                   },
-                  "padding": "16px 24px",
                   "border-radius": "2px",
-                  "font-weight": "bold",
-                  "letter-spacing": "0.05em",
-                  "width": "100%",
-                  "min-width": "100%",
-                  "max-width": "100%",
-                  "font-size": "16px",
-                  "text-align": "center",
-                  "margin": "0",
-                  "display": "block",
-                  "box-sizing": "border-box"
+                  "padding-left": "60px",
+                  "padding-right": "60px"
                 }
               },
               "buttonDestination": "checkout",
@@ -113,7 +107,10 @@ export default function Offer() {
               },
               "text": {
                 "button": "ORDER UNLIMITED CHIP"
-              }
+              },
+              "googleFonts": [
+                "Montserrat"
+              ]
             },
             "productSet": {
               "styles": {
@@ -140,6 +137,8 @@ export default function Offer() {
                   }
                 },
                 "button": {
+                  "font-family": "Montserrat, sans-serif",
+                  "font-weight": "bold",
                   "color": "#000000",
                   ":hover": {
                     "color": "#000000",
@@ -149,10 +148,14 @@ export default function Offer() {
                   ":focus": {
                     "background-color": "#e6e6e6"
                   },
-                  "padding-left": "39px",
-                  "padding-right": "39px"
+                  "border-radius": "2px",
+                  "padding-left": "60px",
+                  "padding-right": "60px"
                 }
               },
+              "googleFonts": [
+                "Montserrat"
+              ],
               "text": {
                 "button": "Add to cart"
               }
@@ -161,6 +164,8 @@ export default function Offer() {
             "cart": {
               "styles": {
                 "button": {
+                  "font-family": "Montserrat, sans-serif",
+                  "font-weight": "bold",
                   "color": "#000000",
                   ":hover": {
                     "color": "#000000",
@@ -169,17 +174,23 @@ export default function Offer() {
                   "background-color": "#ffffff",
                   ":focus": {
                     "background-color": "#e6e6e6"
-                  }
+                  },
+                  "border-radius": "2px"
                 }
               },
               "text": {
                 "total": "Subtotal",
                 "button": "Checkout"
-              }
+              },
+              "googleFonts": [
+                "Montserrat"
+              ]
             },
             "toggle": {
               "styles": {
                 "toggle": {
+                  "font-family": "Montserrat, sans-serif",
+                  "font-weight": "bold",
                   "background-color": "#ffffff",
                   ":hover": {
                     "background-color": "#e6e6e6"
@@ -197,7 +208,10 @@ export default function Offer() {
                 "iconPath": {
                   "fill": "#000000"
                 }
-              }
+              },
+              "googleFonts": [
+                "Montserrat"
+              ]
             }
           },
         });
@@ -300,7 +314,7 @@ export default function Offer() {
                   </div>
                   
                   {plan.id === 'unlimited' ? (
-                    <div id="product-component-1756454782760" className="w-full"></div>
+                    <div id="product-component-1756455325437" className="w-full"></div>
                   ) : (
                     <button
                       onClick={() => handleOrderClick(plan.id)}
