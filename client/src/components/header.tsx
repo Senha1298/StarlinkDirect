@@ -4,17 +4,17 @@ export default function Header() {
   return (
     <>
       {/* Promotional Banner */}
-      <div className="fixed top-0 left-0 right-0 z-50 bg-white text-black py-2 px-4">
+      <div className="fixed top-0 left-0 right-0 z-50 bg-white text-black py-1 px-4">
         <div className="container mx-auto text-center max-w-7xl">
-          <p className="font-bold text-sm" data-testid="promo-banner">
+          <p className="font-bold text-sm" style={{textShadow: 'none'}} data-testid="promo-banner">
             Try Starlink and get a SIM card with internet access for just $9.90 with no monthly fees.
           </p>
         </div>
       </div>
       
       {/* Main Header */}
-<header className="fixed top-12 left-0 right-0 z-40 bg-black/95 backdrop-blur-md border-b border-white/10">
-        <div className="container mx-auto px-6 py-3 flex justify-between items-center max-w-7xl">
+<header className="fixed top-8 left-0 right-0 z-40 bg-black/95 backdrop-blur-md border-b border-white/10">
+        <div className="container mx-auto px-6 py-4 flex justify-between items-center max-w-7xl">
           <div className="flex items-center" data-testid="logo">
             <img 
               src={starlinkLogo} 

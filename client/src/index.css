@@ -96,7 +96,8 @@
   .starlink-button-primary *,
   [style*="color: #000"],
   [style*="color: #000000"],
-  [style*="color: black"] {
+  [style*="color: black"],
+  [style*="textShadow: 'none'"] {
     text-shadow: none !important;
   }
 }
