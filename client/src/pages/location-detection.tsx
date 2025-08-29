@@ -16,31 +16,35 @@ export default function LocationDetection() {
     <div className="min-h-screen bg-background text-foreground">
       <Header />
       
-      <section className="min-h-screen pt-20 flex items-center justify-center starlink-gradient">
-        <div className="container mx-auto px-4 text-center">
+      <section className="min-h-screen pt-24 flex items-center justify-center starlink-gradient">
+        <div className="container mx-auto px-6 text-center max-w-7xl">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="max-w-4xl mx-auto fade-in"
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            className="max-w-4xl mx-auto"
           >
-            <h1 className="text-4xl md:text-6xl font-bold mb-8 leading-tight">
-              LOCATION VERIFICATION<br />
-              <span className="text-accent">SERVICE AVAILABILITY</span>
-            </h1>
+            <div className="mb-12">
+              <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight tracking-tight">
+                LOCATION VERIFICATION<br />
+                <span className="bg-gradient-to-r from-white via-gray-200 to-white bg-clip-text text-transparent">
+                  SERVICE AVAILABILITY
+                </span>
+              </h1>
+            </div>
             
-            <div className="bg-card rounded-lg p-8 mb-8">
-              <div className="mb-8">
-                <div className="w-32 h-32 mx-auto mb-6 bg-secondary rounded-full flex items-center justify-center">
-                  <MapPin className="w-16 h-16" />
+            <div className="professional-card rounded-3xl p-12 mb-8">
+              <div className="mb-10">
+                <div className="w-40 h-40 mx-auto mb-8 glass-effect rounded-full flex items-center justify-center">
+                  <MapPin className="w-20 h-20 text-white" />
                 </div>
               </div>
               
-              <h2 className="text-2xl md:text-3xl font-semibold mb-6" data-testid="location-question">
+              <h2 className="text-3xl md:text-4xl font-medium mb-8 text-white/95" data-testid="location-question">
                 Confirm your location
               </h2>
               
-              <p className="text-xl mb-8 text-muted-foreground" data-testid="detected-location">
+              <p className="text-2xl mb-12 font-medium text-white/80" data-testid="detected-location">
                 {isLoading 
                   ? "Detecting your location..." 
                   : error 
@@ -49,10 +53,10 @@ export default function LocationDetection() {
                 }
               </p>
               
-              <div className="flex gap-4 justify-center flex-wrap">
+              <div className="flex gap-6 justify-center flex-wrap">
                 <button
                   onClick={handleConfirm}
-                  className="bg-accent text-accent-foreground py-3 px-8 rounded-lg text-lg font-medium hover:bg-accent/90 transition-all transform hover:scale-[1.02]"
+                  className="starlink-button-primary py-4 px-10 rounded-2xl text-lg font-medium"
                   data-testid="button-confirm-location"
                   disabled={isLoading}
                 >
@@ -60,7 +64,7 @@ export default function LocationDetection() {
                 </button>
                 <button
                   onClick={handleConfirm}
-                  className="bg-secondary text-secondary-foreground py-3 px-8 rounded-lg text-lg font-medium hover:bg-secondary/90 transition-all transform hover:scale-[1.02]"
+                  className="starlink-button-secondary py-4 px-10 rounded-2xl text-lg font-medium"
                   data-testid="button-different-location"
                   disabled={isLoading}
                 >

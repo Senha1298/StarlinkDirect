@@ -16,38 +16,42 @@ export default function DeviceDetection() {
     <div className="min-h-screen bg-background text-foreground">
       <Header />
       
-      <section className="min-h-screen pt-20 flex items-center justify-center starlink-gradient">
-        <div className="container mx-auto px-4 text-center">
+      <section className="min-h-screen pt-24 flex items-center justify-center starlink-gradient">
+        <div className="container mx-auto px-6 text-center max-w-7xl">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="max-w-4xl mx-auto fade-in"
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            className="max-w-4xl mx-auto"
           >
-            <h1 className="text-4xl md:text-6xl font-bold mb-8 leading-tight">
-              DEVICE VERIFICATION<br />
-              <span className="text-accent">COMPATIBILITY CHECK</span>
-            </h1>
+            <div className="mb-12">
+              <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight tracking-tight">
+                DEVICE VERIFICATION<br />
+                <span className="bg-gradient-to-r from-white via-gray-200 to-white bg-clip-text text-transparent">
+                  COMPATIBILITY CHECK
+                </span>
+              </h1>
+            </div>
             
-            <div className="bg-card rounded-lg p-8 mb-8">
-              <div className="mb-8">
-                <div className="w-32 h-32 mx-auto mb-6 bg-secondary rounded-2xl flex items-center justify-center">
-                  <Smartphone className="w-16 h-16" />
+            <div className="professional-card rounded-3xl p-12 mb-8">
+              <div className="mb-10">
+                <div className="w-40 h-40 mx-auto mb-8 glass-effect rounded-3xl flex items-center justify-center">
+                  <Smartphone className="w-20 h-20 text-white" />
                 </div>
               </div>
               
-              <h2 className="text-2xl md:text-3xl font-semibold mb-6" data-testid="device-question">
+              <h2 className="text-3xl md:text-4xl font-medium mb-8 text-white/95" data-testid="device-question">
                 Is this your device?
               </h2>
               
-              <p className="text-xl mb-8 text-muted-foreground" data-testid="detected-device">
-                {isLoading ? "Loading device information..." : device}
+              <p className="text-2xl mb-12 font-medium text-white/80" data-testid="detected-device">
+                {isLoading ? "Detecting device..." : device}
               </p>
               
-              <div className="flex gap-4 justify-center flex-wrap">
+              <div className="flex gap-6 justify-center flex-wrap">
                 <button
                   onClick={handleConfirm}
-                  className="bg-accent text-accent-foreground py-3 px-8 rounded-lg text-lg font-medium hover:bg-accent/90 transition-all transform hover:scale-[1.02]"
+                  className="starlink-button-primary py-4 px-10 rounded-2xl text-lg font-medium"
                   data-testid="button-confirm-device"
                   disabled={isLoading}
                 >
@@ -55,7 +59,7 @@ export default function DeviceDetection() {
                 </button>
                 <button
                   onClick={handleConfirm}
-                  className="bg-secondary text-secondary-foreground py-3 px-8 rounded-lg text-lg font-medium hover:bg-secondary/90 transition-all transform hover:scale-[1.02]"
+                  className="starlink-button-secondary py-4 px-10 rounded-2xl text-lg font-medium"
                   data-testid="button-different-device"
                   disabled={isLoading}
                 >

@@ -40,37 +40,41 @@ export default function Loading() {
     <div className="min-h-screen bg-background text-foreground">
       <Header />
       
-      <section className="min-h-screen pt-20 flex items-center justify-center starlink-gradient">
-        <div className="container mx-auto px-4 text-center">
+      <section className="min-h-screen pt-24 flex items-center justify-center starlink-gradient">
+        <div className="container mx-auto px-6 text-center max-w-7xl">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="max-w-4xl mx-auto fade-in"
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            className="max-w-4xl mx-auto"
           >
-            <h1 className="text-4xl md:text-6xl font-bold mb-8 leading-tight">
-              CHECKING COMPATIBILITY<br />
-              <span className="text-accent">PLEASE WAIT</span>
-            </h1>
+            <div className="mb-12">
+              <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight tracking-tight">
+                CHECKING COMPATIBILITY<br />
+                <span className="bg-gradient-to-r from-white via-gray-200 to-white bg-clip-text text-transparent">
+                  PLEASE WAIT
+                </span>
+              </h1>
+            </div>
             
-            <div className="bg-card rounded-lg p-12 mb-8">
-              <div className="w-16 h-16 loading-spinner mx-auto mb-8" data-testid="loading-spinner"></div>
+            <div className="professional-card rounded-3xl p-16 mb-8">
+              <div className="w-20 h-20 loading-spinner mx-auto mb-12" data-testid="loading-spinner"></div>
               
-              <p className="text-xl text-muted-foreground mb-4" data-testid="loading-description">
+              <p className="text-2xl text-white/90 mb-8 font-medium" data-testid="loading-description">
                 Verifying device compatibility with Starlink Direct to Cell...
               </p>
               
-              <div className="w-full bg-secondary rounded-full h-2 mb-4">
+              <div className="w-full bg-black/30 rounded-full h-3 mb-8 overflow-hidden">
                 <motion.div
                   initial={{ width: "0%" }}
                   animate={{ width: `${progress}%` }}
-                  transition={{ duration: 0.3 }}
-                  className="bg-accent h-2 rounded-full"
+                  transition={{ duration: 0.3, ease: "easeOut" }}
+                  className="bg-gradient-to-r from-white to-gray-200 h-3 rounded-full shadow-lg"
                   data-testid="progress-bar"
                 />
               </div>
               
-              <p className="text-sm text-muted-foreground" data-testid="loading-message">
+              <p className="text-lg text-white/70 font-medium" data-testid="loading-message">
                 {loadingMessages[messageIndex] || loadingMessages[0]}
               </p>
             </div>

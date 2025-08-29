@@ -69,34 +69,38 @@ export default function Questionnaire() {
     <div className="min-h-screen bg-background text-foreground">
       <Header />
       
-      <section className="min-h-screen pt-20 flex items-center justify-center starlink-gradient">
-        <div className="container mx-auto px-4 text-center">
+      <section className="min-h-screen pt-24 flex items-center justify-center starlink-gradient">
+        <div className="container mx-auto px-6 text-center max-w-7xl">
           <motion.div
             key={currentQuestion}
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="max-w-4xl mx-auto fade-in"
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            className="max-w-5xl mx-auto"
           >
-            <h1 className="text-4xl md:text-6xl font-bold mb-8 leading-tight">
-              {question.title}<br />
-              <span className="text-accent">{question.subtitle}</span>
-            </h1>
+            <div className="mb-12">
+              <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight tracking-tight">
+                {question.title}<br />
+                <span className="bg-gradient-to-r from-white via-gray-200 to-white bg-clip-text text-transparent">
+                  {question.subtitle}
+                </span>
+              </h1>
+            </div>
             
-            <div className="bg-card rounded-lg p-8 mb-8">
-              <h2 className="text-2xl md:text-3xl font-semibold mb-8" data-testid={`question-${currentQuestion + 1}`}>
+            <div className="professional-card rounded-3xl p-10 mb-8 max-w-4xl mx-auto">
+              <h2 className="text-2xl md:text-4xl font-medium mb-12 leading-relaxed text-white/95" data-testid={`question-${currentQuestion + 1}`}>
                 {question.question}
               </h2>
               
-              <div className={`space-y-4 ${question.options.length === 4 ? 'md:grid md:grid-cols-2 md:gap-4 md:space-y-0' : ''}`}>
+              <div className={`space-y-5 ${question.options.length === 4 ? 'md:grid md:grid-cols-2 md:gap-6 md:space-y-0' : ''}`}>
                 {question.options.map((option, index) => (
                   <button
                     key={index}
                     onClick={handleAnswerClick}
-                    className={`w-full py-4 px-6 rounded-lg text-lg font-medium transition-all transform hover:scale-[1.02] ${
+                    className={`w-full py-5 px-8 rounded-2xl text-lg font-medium transition-all duration-300 transform hover:scale-[1.02] hover:shadow-lg ${
                       index === 0 
-                        ? 'bg-primary text-primary-foreground hover:bg-primary/90' 
-                        : 'bg-secondary text-secondary-foreground hover:bg-secondary/90'
+                        ? 'starlink-button-primary' 
+                        : 'starlink-button-secondary'
                     }`}
                     data-testid={`answer-${currentQuestion + 1}-${index + 1}`}
                   >
@@ -104,6 +108,22 @@ export default function Questionnaire() {
                   </button>
                 ))}
               </div>
+            </div>
+
+            {/* Progress indicator */}
+            <div className="flex justify-center space-x-3 mt-8">
+              {questions.map((_, index) => (
+                <div
+                  key={index}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    index === currentQuestion 
+                      ? 'bg-white shadow-lg' 
+                      : index < currentQuestion 
+                        ? 'bg-white/70' 
+                        : 'bg-white/20'
+                  }`}
+                />
+              ))}
             </div>
           </motion.div>
         </div>

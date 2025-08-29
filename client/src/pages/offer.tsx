@@ -43,61 +43,67 @@ export default function Offer() {
     <div className="min-h-screen bg-background text-foreground">
       <Header />
       
-      <section className="min-h-screen pt-20 flex items-center justify-center starlink-gradient">
-        <div className="container mx-auto px-4 text-center">
+      <section className="min-h-screen pt-24 flex items-center justify-center starlink-gradient">
+        <div className="container mx-auto px-6 text-center max-w-7xl">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="max-w-6xl mx-auto fade-in"
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            className="max-w-6xl mx-auto"
           >
-            <h1 className="text-4xl md:text-6xl font-bold mb-4 leading-tight">
-              100% COMPATIBLE<br />
-              <span className="text-accent">CHOOSE YOUR PLAN</span>
-            </h1>
-            
-            <p className="text-xl text-muted-foreground mb-12" data-testid="compatibility-message">
-              Your device and location are fully compatible with Starlink Direct to Cell technology
-            </p>
+            <div className="mb-12">
+              <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight tracking-tight">
+                100% COMPATIBLE<br />
+                <span className="bg-gradient-to-r from-white via-gray-200 to-white bg-clip-text text-transparent">
+                  CHOOSE YOUR PLAN
+                </span>
+              </h1>
+              
+              <p className="text-2xl text-white/80 mb-12 font-medium" data-testid="compatibility-message">
+                Your device and location are fully compatible with Starlink Direct to Cell technology
+              </p>
+            </div>
             
             {/* Pricing Cards */}
-            <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto mb-12">
               {plans.map((plan) => (
                 <motion.div
                   key={plan.id}
-                  initial={{ opacity: 0, y: 30 }}
+                  initial={{ opacity: 0, y: 40 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: plan.id === 'unlimited' ? 0.2 : 0 }}
-                  className={`bg-card rounded-2xl p-8 relative transition-all transform hover:scale-[1.02] ${
-                    plan.popular ? 'border-2 border-accent' : 'border border-border hover:border-accent'
+                  transition={{ duration: 0.8, delay: plan.id === 'unlimited' ? 0.2 : 0, ease: "easeOut" }}
+                  className={`professional-card rounded-3xl p-10 relative transition-all duration-300 transform hover:scale-[1.03] hover:shadow-2xl ${
+                    plan.popular ? 'ring-2 ring-white/30' : ''
                   }`}
                   data-testid={`plan-${plan.id}`}
                 >
                   {plan.popular && (
-                    <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-accent text-accent-foreground px-6 py-2 rounded-full text-sm font-medium">
+                    <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-white text-black px-8 py-3 rounded-full text-sm font-bold tracking-wide shadow-lg">
                       MOST POPULAR
                     </div>
                   )}
                   
-                  <div className="mb-6">
-                    <h3 className="text-2xl font-bold mb-2" data-testid={`plan-name-${plan.id}`}>
+                  <div className="mb-8">
+                    <h3 className="text-2xl font-bold mb-4 text-white/95" data-testid={`plan-name-${plan.id}`}>
                       {plan.name}
                     </h3>
-                    <div className="text-5xl font-bold text-accent mb-2" data-testid={`plan-price-${plan.id}`}>
+                    <div className="text-6xl font-bold text-white mb-3" data-testid={`plan-price-${plan.id}`}>
                       {plan.price}
                     </div>
-                    <p className="text-muted-foreground" data-testid={`plan-description-${plan.id}`}>
+                    <p className="text-lg text-white/70 font-medium" data-testid={`plan-description-${plan.id}`}>
                       {plan.description}
                     </p>
                   </div>
                   
-                  <div className="space-y-4 mb-8">
+                  <div className="space-y-5 mb-10">
                     {plan.features.map((feature, index) => {
                       const IconComponent = feature.icon;
                       return (
                         <div key={index} className="flex items-center" data-testid={`feature-${plan.id}-${index}`}>
-                          <IconComponent className="w-5 h-5 text-accent mr-3" />
-                          <span>{feature.text}</span>
+                          <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center mr-4">
+                            <IconComponent className="w-4 h-4 text-white" />
+                          </div>
+                          <span className="text-lg text-white/90 font-medium">{feature.text}</span>
                         </div>
                       );
                     })}
@@ -105,7 +111,7 @@ export default function Offer() {
                   
                   <button
                     onClick={() => handleOrderClick(plan.id)}
-                    className="w-full bg-accent text-accent-foreground py-4 px-6 rounded-lg text-lg font-medium hover:bg-accent/90 transition-all transform hover:scale-[1.02]"
+                    className="w-full starlink-button-primary py-5 px-8 rounded-2xl text-lg font-bold tracking-wide"
                     data-testid={`button-order-${plan.id}`}
                   >
                     {plan.buttonText}
@@ -117,16 +123,25 @@ export default function Offer() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.4 }}
-              className="mt-12 text-center"
+              transition={{ duration: 0.8, delay: 0.6 }}
+              className="text-center glass-effect rounded-2xl p-8 max-w-3xl mx-auto"
             >
-              <p className="text-sm text-muted-foreground mb-4" data-testid="guarantee-text">
+              <p className="text-lg text-white/90 mb-6 font-medium" data-testid="guarantee-text">
                 30-day money-back guarantee • Free worldwide shipping
               </p>
-              <div className="flex justify-center space-x-4 text-xs text-muted-foreground">
-                <span data-testid="secure-payment">🛡️ Secure Payment</span>
-                <span data-testid="fast-delivery">🚀 Fast Delivery</span>
-                <span data-testid="global-support">🌍 Global Support</span>
+              <div className="flex justify-center space-x-8 text-sm text-white/80">
+                <div className="flex items-center space-x-2">
+                  <Shield className="w-4 h-4" />
+                  <span data-testid="secure-payment">Secure Payment</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <Zap className="w-4 h-4" />
+                  <span data-testid="fast-delivery">Fast Delivery</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <Globe className="w-4 h-4" />
+                  <span data-testid="global-support">Global Support</span>
+                </div>
               </div>
             </motion.div>
           </motion.div>
