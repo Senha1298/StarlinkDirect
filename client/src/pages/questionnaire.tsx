@@ -88,11 +88,12 @@ export default function Questionnaire() {
             </div>
             
             <div 
-              className="professional-card rounded-sm p-8 mb-6 max-w-3xl mx-auto"
+              className="rounded-sm p-8 mb-6 max-w-3xl mx-auto"
               style={{
-                background: 'rgba(0, 0, 0, 0.6)',
+                background: 'rgba(0, 0, 0, 0.95)',
                 backdropFilter: 'blur(12px)',
-                border: '1px solid rgba(255, 255, 255, 0.1)'
+                border: '1px solid rgba(255, 255, 255, 0.3)',
+                boxShadow: '0 8px 32px rgba(0, 0, 0, 0.5)'
               }}
             >
               <h2 className="text-xl md:text-2xl font-medium mb-8 leading-relaxed text-white/95" data-testid={`question-${currentQuestion + 1}`}>
