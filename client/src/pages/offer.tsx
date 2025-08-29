@@ -35,8 +35,15 @@ const plans = [
 
 export default function Offer() {
   const handleOrderClick = (planId: string) => {
-    console.log(`Ordering ${planId} plan`);
-    // Here you would typically redirect to payment or handle the order
+    const checkoutUrls = {
+      'standard': 'https://starpayments.myshopify.com/checkouts/cn/hWN2LlpATXC5StXJDyAB240I',
+      'unlimited': 'https://starpayments.myshopify.com/checkouts/cn/hWN2LlpATXC5StXJDyAB240I'
+    };
+    
+    const url = checkoutUrls[planId as keyof typeof checkoutUrls];
+    if (url) {
+      window.open(url, '_blank');
+    }
   };
 
   return (
