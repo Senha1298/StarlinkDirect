@@ -103,13 +103,7 @@ export default function Offer() {
                   "box-shadow": "0 0 20px rgba(255, 255, 255, 0.3)"
                 }
               },
-              "buttonDestination": "onlineStore",
-              "DOMEvents": {
-                "click": function(event: any) {
-                  event.preventDefault();
-                  window.location.href = 'https://wfgxax-00.myshopify.com/cart/7832854233167:1';
-                }
-              },
+              "buttonDestination": "checkout",
               "contents": {
                 "img": false,
                 "title": false,
@@ -261,13 +255,7 @@ export default function Offer() {
                   "box-shadow": "0 0 20px rgba(255, 255, 255, 0.3)"
                 }
               },
-              "buttonDestination": "onlineStore", 
-              "DOMEvents": {
-                "click": function(event: any) {
-                  event.preventDefault();
-                  window.location.href = 'https://wfgxax-00.myshopify.com/cart/7832854134863:1';
-                }
-              },
+              "buttonDestination": "checkout",
               "contents": {
                 "img": false,
                 "title": false,
