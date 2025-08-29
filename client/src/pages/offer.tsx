@@ -76,11 +76,9 @@ export default function Offer() {
             "product": {
               "styles": {
                 "product": {
-                  "@media (min-width: 601px)": {
-                    "max-width": "calc(25% - 20px)",
-                    "margin-left": "20px",
-                    "margin-bottom": "50px"
-                  }
+                  "width": "100%",
+                  "text-align": "center",
+                  "padding": "0 10px"
                 },
                 "button": {
                   "font-family": "Montserrat, sans-serif",
@@ -97,7 +95,10 @@ export default function Offer() {
                   "border-radius": "2px",
                   "padding-left": "41px",
                   "padding-right": "41px",
-                  "margin-left": "20px"
+                  "width": "100%",
+                  "text-align": "center",
+                  "margin": "0 auto",
+                  "display": "block"
                 }
               },
               "buttonDestination": "checkout",
