@@ -48,35 +48,14 @@ export default function Popup({ isOpen, onClose, type, onContinue }: PopupProps)
             className="bg-card border border-border rounded-sm p-8 max-w-md mx-4"
           >
             <div className="text-center">
-              <div className="relative mx-auto mb-6 w-16 h-16">
-                {/* Sombra brilhante animada atrás */}
-                <motion.div 
-                  className="absolute inset-0 pointer-events-none"
-                  style={{
-                    background: 'radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%)',
-                    boxShadow: '0 0 30px rgba(255,255,255,0.8), 0 0 60px rgba(255,255,255,0.4), 0 0 90px rgba(255,255,255,0.2)'
-                  }}
-                  animate={{
-                    y: [0, -8, 0],
-                    rotate: [0, 3, -3, 0],
-                    scale: [1, 1.1, 1]
-                  }}
-                  transition={{
-                    duration: 3,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }}
-                />
-                {/* Ícone estático */}
-                <div className="relative w-16 h-16 bg-gradient-to-br from-white via-gray-100 to-gray-300 rounded-full flex items-center justify-center shadow-lg" 
-                  style={{
-                    boxShadow: '0 8px 20px rgba(0,0,0,0.3), inset 0 2px 4px rgba(255,255,255,0.8), inset 0 -2px 4px rgba(0,0,0,0.2)'
-                  }}
-                >
-                  <IconComponent className="w-8 h-8 text-gray-800 drop-shadow-sm" style={{
-                    filter: 'brightness(1.2) contrast(1.1)'
-                  }} />
-                </div>
+              <div className="w-16 h-16 bg-gradient-to-br from-white via-gray-100 to-gray-300 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg" 
+                style={{
+                  boxShadow: '0 8px 20px rgba(0,0,0,0.3), inset 0 2px 4px rgba(255,255,255,0.8), inset 0 -2px 4px rgba(0,0,0,0.2), 0 0 30px rgba(255,255,255,0.6), 0 0 60px rgba(255,255,255,0.3)'
+                }}
+              >
+                <IconComponent className="w-8 h-8 text-gray-800 drop-shadow-sm" style={{
+                  filter: 'brightness(1.2) contrast(1.1)'
+                }} />
               </div>
               <h3 className="text-2xl font-bold mb-4" data-testid={`popup-title-${type}`}>
                 {content.title}
