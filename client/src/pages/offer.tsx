@@ -43,7 +43,7 @@ export default function Offer() {
     <div className="min-h-screen bg-background text-foreground">
       <Header />
       
-      <section className="min-h-screen pt-32 flex items-center justify-center starlink-gradient">
+      <section className="min-h-screen pt-36 flex items-center justify-center starlink-gradient">
         <div className="container mx-auto px-6 text-center max-w-7xl">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
