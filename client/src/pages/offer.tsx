@@ -70,7 +70,7 @@ export default function Offer() {
       ShopifyBuy.UI.onReady(client).then(function (ui: any) {
         ui.createComponent('product', {
           id: '7832854233167',
-          node: document.getElementById('shopify-product-component'),
+          node: document.getElementById('product-component-1756454170311'),
           moneyFormat: '%24%7B%7Bamount%7D%7D',
           options: {
             "product": {
@@ -185,8 +185,28 @@ export default function Offer() {
 
   const handleOrderClick = (planId: string) => {
     if (planId === 'unlimited') {
-      // Direct redirect to Shopify checkout for unlimited plan
-      window.location.href = 'https://wfgxax-00.myshopify.com/products/starlink-unlimited-chip';
+      // Trigger Shopify buy button for unlimited plan (goes direct to checkout)
+      const triggerShopifyCheckout = () => {
+        const shopifyButton = document.querySelector('#product-component-1756454170311 [data-element="product.button"]') as HTMLButtonElement;
+        if (shopifyButton) {
+          console.log('Clicando no botão do Shopify...');
+          shopifyButton.click();
+        } else {
+          // Fallback: try any button in the Shopify component
+          const anyButton = document.querySelector('#product-component-1756454170311 button') as HTMLButtonElement;
+          if (anyButton) {
+            console.log('Clicando no botão alternativo do Shopify...');
+            anyButton.click();
+          } else {
+            console.log('Botão do Shopify não encontrado, carregando diretamente...');
+            // Fallback direto para o checkout
+            window.location.href = 'https://wfgxax-00.myshopify.com/cart/7832854233167:1';
+          }
+        }
+      };
+      
+      // Wait a bit more for Shopify to fully load
+      setTimeout(triggerShopifyCheckout, 1000);
     } else {
       // Keep existing behavior for standard plan
       const checkoutUrls = {
@@ -205,7 +225,7 @@ export default function Offer() {
       <Header />
       
       {/* Hidden Shopify component for unlimited plan */}
-      <div id="shopify-product-component" style={{ display: 'none' }}></div>
+      <div id="product-component-1756454170311" style={{ display: 'none' }}></div>
       
       <section className="min-h-screen pt-36 flex items-center justify-center starlink-gradient">
         <div className="container mx-auto px-6 text-center max-w-7xl">
