@@ -77,8 +77,7 @@ export default function Offer() {
               "styles": {
                 "product": {
                   "width": "100%",
-                  "text-align": "center",
-                  "padding": "0 10px"
+                  "text-align": "center"
                 },
                 "button": {
                   "font-family": "Montserrat, sans-serif",
@@ -98,7 +97,8 @@ export default function Offer() {
                   "width": "100%",
                   "text-align": "center",
                   "margin": "0 auto",
-                  "display": "block"
+                  "display": "block",
+                  "box-sizing": "border-box"
                 }
               },
               "buttonDestination": "checkout",
@@ -316,7 +316,9 @@ export default function Offer() {
                   </div>
                   
                   {plan.id === 'unlimited' ? (
-                    <div id="product-component-1756455560169" className="w-full"></div>
+                    <div className="w-full flex justify-center">
+                      <div id="product-component-1756455560169" className="w-full max-w-full"></div>
+                    </div>
                   ) : (
                     <button
                       onClick={() => handleOrderClick(plan.id)}
