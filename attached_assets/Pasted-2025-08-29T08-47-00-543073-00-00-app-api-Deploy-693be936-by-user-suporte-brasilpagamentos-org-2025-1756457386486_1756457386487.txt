@@ -1,0 +1,33 @@
+2025-08-29T08:47:00.543073+00:00 app[api]: Deploy 693be936 by user suporte@brasilpagamentos.org
+2025-08-29T08:47:04.000000+00:00 app[api]: Build succeeded
+2025-08-29T08:47:06.325461+00:00 heroku[web.1]: Starting process with command `npm start`
+2025-08-29T08:47:07.368505+00:00 heroku[web.1]: Process exited with status 1
+2025-08-29T08:47:07.144769+00:00 app[web.1]: 
+2025-08-29T08:47:07.144790+00:00 app[web.1]: > rest-express@1.0.0 start
+2025-08-29T08:47:07.144791+00:00 app[web.1]: > NODE_ENV=production node dist/index.js
+2025-08-29T08:47:07.144791+00:00 app[web.1]: 
+2025-08-29T08:47:07.271568+00:00 app[web.1]: node:internal/modules/package_json_reader:255
+2025-08-29T08:47:07.271570+00:00 app[web.1]:   throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);
+2025-08-29T08:47:07.271570+00:00 app[web.1]:         ^
+2025-08-29T08:47:07.271571+00:00 app[web.1]: 
+2025-08-29T08:47:07.271571+00:00 app[web.1]: Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@vitejs/plugin-react' imported from /app/dist/index.js
+2025-08-29T08:47:07.271572+00:00 app[web.1]:     at Object.getPackageJSONURL (node:internal/modules/package_json_reader:255:9)
+2025-08-29T08:47:07.271572+00:00 app[web.1]:     at packageResolve (node:internal/modules/esm/resolve:767:81)
+2025-08-29T08:47:07.271573+00:00 app[web.1]:     at moduleResolve (node:internal/modules/esm/resolve:853:18)
+2025-08-29T08:47:07.271573+00:00 app[web.1]:     at defaultResolve (node:internal/modules/esm/resolve:983:11)
+2025-08-29T08:47:07.271573+00:00 app[web.1]:     at ModuleLoader.defaultResolve (node:internal/modules/esm/loader:783:12)
+2025-08-29T08:47:07.271574+00:00 app[web.1]:     at #cachedDefaultResolve (node:internal/modules/esm/loader:707:25)
+2025-08-29T08:47:07.271574+00:00 app[web.1]:     at ModuleLoader.resolve (node:internal/modules/esm/loader:690:38)
+2025-08-29T08:47:07.271574+00:00 app[web.1]:     at ModuleLoader.getModuleJobForImport (node:internal/modules/esm/loader:307:38)
+2025-08-29T08:47:07.271575+00:00 app[web.1]:     at ModuleJob._link (node:internal/modules/esm/module_job:183:49) {
+2025-08-29T08:47:07.271575+00:00 app[web.1]:   code: 'ERR_MODULE_NOT_FOUND'
+2025-08-29T08:47:07.271575+00:00 app[web.1]: }
+2025-08-29T08:47:07.271576+00:00 app[web.1]: 
+2025-08-29T08:47:07.271576+00:00 app[web.1]: Node.js v22.18.0
+2025-08-29T08:47:07.295885+00:00 app[web.1]: npm notice
+2025-08-29T08:47:07.295887+00:00 app[web.1]: npm notice New major version of npm available! 10.9.3 -> 11.5.2
+2025-08-29T08:47:07.295887+00:00 app[web.1]: npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.5.2
+2025-08-29T08:47:07.295887+00:00 app[web.1]: npm notice To update run: npm install -g npm@11.5.2
+2025-08-29T08:47:07.295888+00:00 app[web.1]: npm notice
+2025-08-29T08:47:07.390445+00:00 heroku[web.1]: State changed from starting to crashed
+2025-08-29T08:48:41.535585+00:00 heroku[router]: sock=client at=warning code=H27 desc="Client Request Interrupted" method=GET path="/robots.txt" host=starlink.chip-app.com request_id=fa05dc01-b423-70ca-d846-1556678ba140 fwd="" dyno= connect=0ms service=0ms status=499 bytes=567 protocol=http2.0 tls=true tls_version=tls1.3
