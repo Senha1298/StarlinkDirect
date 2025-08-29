@@ -67,7 +67,7 @@ export default function Offer() {
         storefrontAccessToken: '0b635f4e01575574fca675f598cd3275',
       });
       
-      ShopifyBuy.UI.onReady(client).then(function (ui) {
+      ShopifyBuy.UI.onReady(client).then(function (ui: any) {
         ui.createComponent('product', {
           id: '7832854233167',
           node: document.getElementById('shopify-product-component'),
@@ -185,11 +185,8 @@ export default function Offer() {
 
   const handleOrderClick = (planId: string) => {
     if (planId === 'unlimited') {
-      // Trigger Shopify buy button for unlimited plan
-      const shopifyButton = document.querySelector('#shopify-product-component button');
-      if (shopifyButton) {
-        shopifyButton.click();
-      }
+      // Direct redirect to Shopify checkout for unlimited plan
+      window.location.href = 'https://wfgxax-00.myshopify.com/products/starlink-unlimited-chip';
     } else {
       // Keep existing behavior for standard plan
       const checkoutUrls = {
