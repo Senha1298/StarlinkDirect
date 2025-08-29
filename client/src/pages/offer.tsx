@@ -63,7 +63,7 @@ export default function Offer() {
 
     const initShopifyBuyButton = () => {
       const client = ShopifyBuy.buildClient({
-        domain: 'wfgxax-00.myshopify.com',
+        domain: 'starpayments.myshopify.com',
         storefrontAccessToken: '0b635f4e01575574fca675f598cd3275',
       });
       
