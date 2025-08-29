@@ -51,7 +51,7 @@ export default function Popup({ isOpen, onClose, type, onContinue }: PopupProps)
               <motion.div 
                 className="w-16 h-16 bg-gradient-to-br from-white via-gray-100 to-gray-300 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg" 
                 style={{
-                  boxShadow: '0 8px 20px rgba(0,0,0,0.3), inset 0 2px 4px rgba(255,255,255,0.8), inset 0 -2px 4px rgba(0,0,0,0.2)'
+                  boxShadow: '0 8px 20px rgba(0,0,0,0.3), inset 0 2px 4px rgba(255,255,255,0.8), inset 0 -2px 4px rgba(0,0,0,0.2), 0 0 30px rgba(255,255,255,0.6), 0 0 60px rgba(255,255,255,0.3)'
                 }}
                 animate={{
                   y: [0, -5, 0],
