@@ -76,28 +76,28 @@ export default function Offer() {
             "product": {
               "styles": {
                 "product": {
-                  "@media (min-width: 601px)": {
-                    "max-width": "calc(25% - 20px)",
-                    "margin-left": "20px",
-                    "margin-bottom": "50px"
-                  }
+                  "width": "100%",
+                  "text-align": "center"
                 },
                 "button": {
-                  "color": "#ffffff",
+                  "color": "#000000",
                   ":hover": {
-                    "color": "#ffffff",
-                    "background-color": "#333333"
+                    "color": "#000000",
+                    "background-color": "#f0f0f0"
                   },
-                  "background-color": "#000000",
+                  "background-color": "#ffffff",
                   ":focus": {
-                    "background-color": "#333333"
+                    "background-color": "#f0f0f0"
                   },
                   "padding": "16px 24px",
                   "border-radius": "2px",
                   "font-weight": "bold",
                   "letter-spacing": "0.05em",
                   "width": "100%",
-                  "font-size": "16px"
+                  "font-size": "16px",
+                  "text-align": "center",
+                  "margin": "0 auto",
+                  "display": "block"
                 }
               },
               "buttonDestination": "checkout",
@@ -295,7 +295,7 @@ export default function Offer() {
                   </div>
                   
                   {plan.id === 'unlimited' ? (
-                    <div id="product-component-1756454782760" className="w-full"></div>
+                    <div id="product-component-1756454782760" className="w-full flex justify-center"></div>
                   ) : (
                     <button
                       onClick={() => handleOrderClick(plan.id)}
