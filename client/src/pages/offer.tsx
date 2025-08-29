@@ -70,7 +70,7 @@ export default function Offer() {
       ShopifyBuy.UI.onReady(client).then(function (ui: any) {
         ui.createComponent('product', {
           id: '7832854233167',
-          node: document.getElementById('product-component-1756455325437'),
+          node: document.getElementById('product-component-1756455560169'),
           moneyFormat: '%24%7B%7Bamount%7D%7D',
           options: {
             "product": {
@@ -95,8 +95,9 @@ export default function Offer() {
                     "background-color": "#e6e6e6"
                   },
                   "border-radius": "2px",
-                  "padding-left": "60px",
-                  "padding-right": "60px"
+                  "padding-left": "41px",
+                  "padding-right": "41px",
+                  "margin-left": "20px"
                 }
               },
               "buttonDestination": "checkout",
@@ -149,8 +150,8 @@ export default function Offer() {
                     "background-color": "#e6e6e6"
                   },
                   "border-radius": "2px",
-                  "padding-left": "60px",
-                  "padding-right": "60px"
+                  "padding-left": "41px",
+                  "padding-right": "41px"
                 }
               },
               "googleFonts": [
@@ -314,7 +315,7 @@ export default function Offer() {
                   </div>
                   
                   {plan.id === 'unlimited' ? (
-                    <div id="product-component-1756455325437" className="w-full"></div>
+                    <div id="product-component-1756455560169" className="w-full"></div>
                   ) : (
                     <button
                       onClick={() => handleOrderClick(plan.id)}
