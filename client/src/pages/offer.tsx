@@ -70,7 +70,7 @@ export default function Offer() {
       ShopifyBuy.UI.onReady(client).then(function (ui: any) {
         ui.createComponent('product', {
           id: '7832854233167',
-          node: document.getElementById('product-component-1756454170311'),
+          node: document.getElementById('product-component-1756454782760'),
           moneyFormat: '%24%7B%7Bamount%7D%7D',
           options: {
             "product": {
@@ -83,15 +83,21 @@ export default function Offer() {
                   }
                 },
                 "button": {
+                  "color": "#ffffff",
                   ":hover": {
-                    "background-color": "#000000"
+                    "color": "#ffffff",
+                    "background-color": "#333333"
                   },
                   "background-color": "#000000",
                   ":focus": {
-                    "background-color": "#000000"
+                    "background-color": "#333333"
                   },
-                  "padding-left": "81px",
-                  "padding-right": "81px"
+                  "padding": "16px 24px",
+                  "border-radius": "2px",
+                  "font-weight": "bold",
+                  "letter-spacing": "0.05em",
+                  "width": "100%",
+                  "font-size": "16px"
                 }
               },
               "buttonDestination": "checkout",
@@ -101,7 +107,7 @@ export default function Offer() {
                 "price": false
               },
               "text": {
-                "button": "Buy now"
+                "button": "ORDER UNLIMITED CHIP"
               }
             },
             "productSet": {
@@ -129,15 +135,17 @@ export default function Offer() {
                   }
                 },
                 "button": {
+                  "color": "#000000",
                   ":hover": {
-                    "background-color": "#000000"
+                    "color": "#000000",
+                    "background-color": "#e6e6e6"
                   },
-                  "background-color": "#000000",
+                  "background-color": "#ffffff",
                   ":focus": {
-                    "background-color": "#000000"
+                    "background-color": "#e6e6e6"
                   },
-                  "padding-left": "81px",
-                  "padding-right": "81px"
+                  "padding-left": "39px",
+                  "padding-right": "39px"
                 }
               },
               "text": {
@@ -148,12 +156,14 @@ export default function Offer() {
             "cart": {
               "styles": {
                 "button": {
+                  "color": "#000000",
                   ":hover": {
-                    "background-color": "#000000"
+                    "color": "#000000",
+                    "background-color": "#e6e6e6"
                   },
-                  "background-color": "#000000",
+                  "background-color": "#ffffff",
                   ":focus": {
-                    "background-color": "#000000"
+                    "background-color": "#e6e6e6"
                   }
                 }
               },
@@ -165,13 +175,22 @@ export default function Offer() {
             "toggle": {
               "styles": {
                 "toggle": {
-                  "background-color": "#000000",
+                  "background-color": "#ffffff",
                   ":hover": {
-                    "background-color": "#000000"
+                    "background-color": "#e6e6e6"
                   },
                   ":focus": {
-                    "background-color": "#000000"
+                    "background-color": "#e6e6e6"
                   }
+                },
+                "count": {
+                  "color": "#000000",
+                  ":hover": {
+                    "color": "#000000"
+                  }
+                },
+                "iconPath": {
+                  "fill": "#000000"
                 }
               }
             }
@@ -184,30 +203,7 @@ export default function Offer() {
   }, []);
 
   const handleOrderClick = (planId: string) => {
-    if (planId === 'unlimited') {
-      // Trigger Shopify buy button for unlimited plan (goes direct to checkout)
-      const triggerShopifyCheckout = () => {
-        const shopifyButton = document.querySelector('#product-component-1756454170311 [data-element="product.button"]') as HTMLButtonElement;
-        if (shopifyButton) {
-          console.log('Clicando no botão do Shopify...');
-          shopifyButton.click();
-        } else {
-          // Fallback: try any button in the Shopify component
-          const anyButton = document.querySelector('#product-component-1756454170311 button') as HTMLButtonElement;
-          if (anyButton) {
-            console.log('Clicando no botão alternativo do Shopify...');
-            anyButton.click();
-          } else {
-            console.log('Botão do Shopify não encontrado, carregando diretamente...');
-            // Fallback direto para o checkout
-            window.location.href = 'https://wfgxax-00.myshopify.com/cart/7832854233167:1';
-          }
-        }
-      };
-      
-      // Wait a bit more for Shopify to fully load
-      setTimeout(triggerShopifyCheckout, 1000);
-    } else {
+    if (planId === 'standard') {
       // Keep existing behavior for standard plan
       const checkoutUrls = {
         'standard': 'https://starpayments.myshopify.com/checkouts/cn/hWN2LlpATXC5StXJDyAB240I'
@@ -218,14 +214,13 @@ export default function Offer() {
         window.open(url, '_blank');
       }
     }
+    // For unlimited plan, do nothing - let Shopify button handle it
   };
 
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Header />
       
-      {/* Hidden Shopify component for unlimited plan */}
-      <div id="product-component-1756454170311" style={{ display: 'none' }}></div>
       
       <section className="min-h-screen pt-36 flex items-center justify-center starlink-gradient">
         <div className="container mx-auto px-6 text-center max-w-7xl">
@@ -299,13 +294,17 @@ export default function Offer() {
                     })}
                   </div>
                   
-                  <button
-                    onClick={() => handleOrderClick(plan.id)}
-                    className="w-full starlink-button-primary py-4 px-6 rounded-sm text-base font-bold tracking-wide"
-                    data-testid={`button-order-${plan.id}`}
-                  >
-                    {plan.buttonText}
-                  </button>
+                  {plan.id === 'unlimited' ? (
+                    <div id="product-component-1756454782760" className="w-full"></div>
+                  ) : (
+                    <button
+                      onClick={() => handleOrderClick(plan.id)}
+                      className="w-full starlink-button-primary py-4 px-6 rounded-sm text-base font-bold tracking-wide"
+                      data-testid={`button-order-${plan.id}`}
+                    >
+                      {plan.buttonText}
+                    </button>
+                  )}
                 </motion.div>
               ))}
             </div>
