@@ -4,6 +4,7 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/not-found";
+import Intro from "@/pages/intro";
 import Questionnaire from "@/pages/questionnaire";
 import DeviceDetection from "@/pages/device-detection";
 import LocationDetection from "@/pages/location-detection";
@@ -13,7 +14,8 @@ import Offer from "@/pages/offer";
 function Router() {
   return (
     <Switch>
-      <Route path="/" component={Questionnaire} />
+      <Route path="/" component={Intro} />
+      <Route path="/questionnaire" component={Questionnaire} />
       <Route path="/device-detection" component={DeviceDetection} />
       <Route path="/location-detection" component={LocationDetection} />
       <Route path="/loading" component={Loading} />
