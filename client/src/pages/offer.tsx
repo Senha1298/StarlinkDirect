@@ -68,6 +68,7 @@ export default function Offer() {
       });
       
       ShopifyBuy.UI.onReady(client).then(function (ui: any) {
+        // Create component for unlimited plan ($19.90)
         ui.createComponent('product', {
           id: '7832854233167',
           node: document.getElementById('product-component-1756455560169'),
@@ -98,7 +99,8 @@ export default function Offer() {
                   "text-align": "center",
                   "margin": "0 auto",
                   "display": "block",
-                  "box-sizing": "border-box"
+                  "box-sizing": "border-box",
+                  "box-shadow": "0 0 20px rgba(255, 255, 255, 0.3)"
                 }
               },
               "buttonDestination": "checkout",
@@ -217,26 +219,165 @@ export default function Offer() {
             }
           },
         });
+        
+        // Create component for standard plan ($9.90)
+        ui.createComponent('product', {
+          id: '7832854134863',
+          node: document.getElementById('product-component-1756456014831'),
+          moneyFormat: '%24%7B%7Bamount%7D%7D',
+          options: {
+            "product": {
+              "styles": {
+                "product": {
+                  "width": "100%",
+                  "text-align": "center"
+                },
+                "button": {
+                  "font-family": "Montserrat, sans-serif",
+                  "font-weight": "bold",
+                  "color": "#000000",
+                  ":hover": {
+                    "color": "#000000",
+                    "background-color": "#e6e6e6"
+                  },
+                  "background-color": "#ffffff",
+                  ":focus": {
+                    "background-color": "#e6e6e6"
+                  },
+                  "border-radius": "2px",
+                  "padding-left": "42px",
+                  "padding-right": "42px",
+                  "width": "100%",
+                  "text-align": "center",
+                  "margin": "0 auto",
+                  "display": "block",
+                  "box-sizing": "border-box",
+                  "box-shadow": "0 0 20px rgba(255, 255, 255, 0.3)"
+                }
+              },
+              "buttonDestination": "checkout",
+              "contents": {
+                "img": false,
+                "title": false,
+                "price": false
+              },
+              "text": {
+                "button": "ORDER STANDARD CHIP"
+              },
+              "googleFonts": [
+                "Montserrat"
+              ]
+            },
+            "productSet": {
+              "styles": {
+                "products": {
+                  "@media (min-width: 601px)": {
+                    "margin-left": "-20px"
+                  }
+                }
+              }
+            },
+            "modalProduct": {
+              "contents": {
+                "img": false,
+                "imgWithCarousel": true,
+                "button": false,
+                "buttonWithQuantity": true
+              },
+              "styles": {
+                "product": {
+                  "@media (min-width: 601px)": {
+                    "max-width": "100%",
+                    "margin-left": "0px",
+                    "margin-bottom": "0px"
+                  }
+                },
+                "button": {
+                  "font-family": "Montserrat, sans-serif",
+                  "font-weight": "bold",
+                  "color": "#000000",
+                  ":hover": {
+                    "color": "#000000",
+                    "background-color": "#e6e6e6"
+                  },
+                  "background-color": "#ffffff",
+                  ":focus": {
+                    "background-color": "#e6e6e6"
+                  },
+                  "border-radius": "2px",
+                  "padding-left": "42px",
+                  "padding-right": "42px"
+                }
+              },
+              "googleFonts": [
+                "Montserrat"
+              ],
+              "text": {
+                "button": "Add to cart"
+              }
+            },
+            "option": {},
+            "cart": {
+              "styles": {
+                "button": {
+                  "font-family": "Montserrat, sans-serif",
+                  "font-weight": "bold",
+                  "color": "#000000",
+                  ":hover": {
+                    "color": "#000000",
+                    "background-color": "#e6e6e6"
+                  },
+                  "background-color": "#ffffff",
+                  ":focus": {
+                    "background-color": "#e6e6e6"
+                  },
+                  "border-radius": "2px"
+                }
+              },
+              "text": {
+                "total": "Subtotal",
+                "button": "Checkout"
+              },
+              "googleFonts": [
+                "Montserrat"
+              ]
+            },
+            "toggle": {
+              "styles": {
+                "toggle": {
+                  "font-family": "Montserrat, sans-serif",
+                  "font-weight": "bold",
+                  "background-color": "#ffffff",
+                  ":hover": {
+                    "background-color": "#e6e6e6"
+                  },
+                  ":focus": {
+                    "background-color": "#e6e6e6"
+                  }
+                },
+                "count": {
+                  "color": "#000000",
+                  ":hover": {
+                    "color": "#000000"
+                  }
+                },
+                "iconPath": {
+                  "fill": "#000000"
+                }
+              },
+              "googleFonts": [
+                "Montserrat"
+              ]
+            }
+          },
+        });
       });
     };
 
     loadShopifyScript();
   }, []);
 
-  const handleOrderClick = (planId: string) => {
-    if (planId === 'standard') {
-      // Keep existing behavior for standard plan
-      const checkoutUrls = {
-        'standard': 'https://starpayments.myshopify.com/checkouts/cn/hWN2LlpATXC5StXJDyAB240I'
-      };
-      
-      const url = checkoutUrls[planId as keyof typeof checkoutUrls];
-      if (url) {
-        window.open(url, '_blank');
-      }
-    }
-    // For unlimited plan, do nothing - let Shopify button handle it
-  };
+  // Both plans now use Shopify buttons - no manual handling needed
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -320,13 +461,9 @@ export default function Offer() {
                       <div id="product-component-1756455560169" className="w-full max-w-full"></div>
                     </div>
                   ) : (
-                    <button
-                      onClick={() => handleOrderClick(plan.id)}
-                      className="w-full starlink-button-primary py-4 px-6 rounded-sm text-base font-bold tracking-wide"
-                      data-testid={`button-order-${plan.id}`}
-                    >
-                      {plan.buttonText}
-                    </button>
+                    <div className="w-full flex justify-center">
+                      <div id="product-component-1756456014831" className="w-full max-w-full"></div>
+                    </div>
                   )}
                 </motion.div>
               ))}
