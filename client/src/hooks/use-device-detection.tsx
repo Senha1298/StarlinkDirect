@@ -32,20 +32,64 @@ export function useDeviceDetection() {
       if (userAgent.match(/iPhone/i)) {
         const iosVersion = userAgent.match(/OS (\d+)_(\d+)/);
         const version = iosVersion ? parseInt(iosVersion[1]) : 0;
+        const minorVersion = iosVersion ? parseInt(iosVersion[2]) : 0;
         
-        if (userAgent.includes('iPhone16,')) detectedDevice = 'iPhone 15 Pro Max';
-        else if (userAgent.includes('iPhone15,')) detectedDevice = 'iPhone 14 Pro Max';
-        else if (userAgent.includes('iPhone14,')) detectedDevice = 'iPhone 13 Pro Max';
-        else if (userAgent.includes('iPhone13,')) detectedDevice = 'iPhone 12 Pro Max';
-        else if (userAgent.includes('iPhone12,')) detectedDevice = 'iPhone 11 Pro Max';
-        else if (userAgent.includes('iPhone11,')) detectedDevice = 'iPhone XS Max';
-        else if (userAgent.includes('iPhone10,')) detectedDevice = 'iPhone X';
-        else if (version >= 17) detectedDevice = 'iPhone 15 Pro';
-        else if (version >= 16) detectedDevice = 'iPhone 14 Pro';
-        else if (version >= 15) detectedDevice = 'iPhone 13';
-        else if (version >= 14) detectedDevice = 'iPhone 12';
-        else if (version >= 13) detectedDevice = 'iPhone 11';
-        else detectedDevice = 'iPhone';
+        // More accurate iPhone model detection based on device identifiers and iOS versions
+        if (userAgent.includes('iPhone16,')) {
+          detectedDevice = 'iPhone 15 Pro Max';
+        } else if (userAgent.includes('iPhone15,')) {
+          if (userAgent.includes('iPhone15,5')) detectedDevice = 'iPhone 14 Plus';
+          else if (userAgent.includes('iPhone15,4')) detectedDevice = 'iPhone 14';
+          else if (userAgent.includes('iPhone15,3')) detectedDevice = 'iPhone 14 Pro Max';
+          else if (userAgent.includes('iPhone15,2')) detectedDevice = 'iPhone 14 Pro';
+          else detectedDevice = 'iPhone 14 Pro';
+        } else if (userAgent.includes('iPhone14,')) {
+          if (userAgent.includes('iPhone14,8')) detectedDevice = 'iPhone 13 mini';
+          else if (userAgent.includes('iPhone14,7')) detectedDevice = 'iPhone 13';
+          else if (userAgent.includes('iPhone14,6')) detectedDevice = 'iPhone 13 Pro';
+          else if (userAgent.includes('iPhone14,5')) detectedDevice = 'iPhone 13 Pro Max';
+          else detectedDevice = 'iPhone 13 Pro';
+        } else if (userAgent.includes('iPhone13,')) {
+          if (userAgent.includes('iPhone13,4')) detectedDevice = 'iPhone 12 Pro Max';
+          else if (userAgent.includes('iPhone13,3')) detectedDevice = 'iPhone 12 Pro';
+          else if (userAgent.includes('iPhone13,2')) detectedDevice = 'iPhone 12';
+          else if (userAgent.includes('iPhone13,1')) detectedDevice = 'iPhone 12 mini';
+          else detectedDevice = 'iPhone 12';
+        } else if (userAgent.includes('iPhone12,')) {
+          if (userAgent.includes('iPhone12,8')) detectedDevice = 'iPhone SE (2nd gen)';
+          else if (userAgent.includes('iPhone12,5')) detectedDevice = 'iPhone 11 Pro Max';
+          else if (userAgent.includes('iPhone12,3')) detectedDevice = 'iPhone 11 Pro';
+          else if (userAgent.includes('iPhone12,1')) detectedDevice = 'iPhone 11';
+          else detectedDevice = 'iPhone 11';
+        } else if (userAgent.includes('iPhone11,')) {
+          if (userAgent.includes('iPhone11,8')) detectedDevice = 'iPhone XR';
+          else if (userAgent.includes('iPhone11,6')) detectedDevice = 'iPhone XS Max';
+          else if (userAgent.includes('iPhone11,2')) detectedDevice = 'iPhone XS';
+          else detectedDevice = 'iPhone XS';
+        } else if (userAgent.includes('iPhone10,')) {
+          if (userAgent.includes('iPhone10,6')) detectedDevice = 'iPhone X';
+          else if (userAgent.includes('iPhone10,3')) detectedDevice = 'iPhone X';
+          else detectedDevice = 'iPhone X';
+        } else {
+          // Fallback detection based on iOS version and screen capabilities
+          if (version >= 17) {
+            detectedDevice = 'iPhone 15';
+          } else if (version >= 16) {
+            detectedDevice = 'iPhone 14';
+          } else if (version >= 15) {
+            detectedDevice = 'iPhone 13';
+          } else if (version >= 14) {
+            detectedDevice = 'iPhone 12';
+          } else if (version >= 13) {
+            detectedDevice = 'iPhone 11';
+          } else if (version >= 12) {
+            detectedDevice = 'iPhone XS';
+          } else if (version >= 11) {
+            detectedDevice = 'iPhone X';
+          } else {
+            detectedDevice = 'iPhone';
+          }
+        }
       }
       // iPad comprehensive detection
       else if (userAgent.match(/iPad/i)) {
