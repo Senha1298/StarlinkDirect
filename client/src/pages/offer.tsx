@@ -76,9 +76,9 @@ export default function Offer() {
                     plan.popular ? 'ring-2 ring-white/30' : ''
                   }`}
                   style={{
-                    backgroundColor: 'rgba(0, 0, 0, 0.6)',
+                    backgroundColor: 'rgba(20, 20, 20, 0.95)',
                     backdropFilter: 'blur(12px)',
-                    border: '1px solid rgba(255, 255, 255, 0.1)',
+                    border: '1px solid rgba(255, 255, 255, 0.3)',
                     boxShadow: '0 8px 32px rgba(0, 0, 0, 0.5)'
                   }}
                   data-testid={`plan-${plan.id}`}
