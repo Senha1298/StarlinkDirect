@@ -72,13 +72,14 @@ export default function Offer() {
                   initial={{ opacity: 0, y: 40 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: plan.id === 'unlimited' ? 0.2 : 0, ease: "easeOut" }}
-                  className={`professional-card rounded-sm p-8 relative transition-all duration-300 transform hover:scale-[1.03] hover:shadow-2xl ${
+                  className={`rounded-sm p-8 relative transition-all duration-300 transform hover:scale-[1.03] hover:shadow-2xl ${
                     plan.popular ? 'ring-2 ring-white/30' : ''
                   }`}
                   style={{
-                    backgroundColor: 'rgb(20, 20, 20)',
-                    border: '1px solid rgba(255, 255, 255, 0.3)',
-                    boxShadow: '0 8px 32px rgba(0, 0, 0, 0.5)'
+                    backgroundColor: '#000000 !important',
+                    opacity: '1 !important',
+                    border: '2px solid #ffffff',
+                    boxShadow: '0 8px 32px rgba(0, 0, 0, 0.8)'
                   }}
                   data-testid={`plan-${plan.id}`}
                 >
