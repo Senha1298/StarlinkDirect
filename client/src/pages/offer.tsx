@@ -75,6 +75,12 @@ export default function Offer() {
                   className={`professional-card rounded-sm p-8 relative transition-all duration-300 transform hover:scale-[1.03] hover:shadow-2xl ${
                     plan.popular ? 'ring-2 ring-white/30' : ''
                   }`}
+                  style={{
+                    backgroundColor: 'rgba(0, 0, 0, 0.6)',
+                    backdropFilter: 'blur(12px)',
+                    border: '1px solid rgba(255, 255, 255, 0.1)',
+                    boxShadow: '0 8px 32px rgba(0, 0, 0, 0.5)'
+                  }}
                   data-testid={`plan-${plan.id}`}
                 >
                   {plan.popular && (

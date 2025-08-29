@@ -57,7 +57,15 @@ export default function Loading() {
               </h1>
             </div>
             
-            <div className="professional-card rounded-sm p-10 mb-6">
+            <div 
+              className="professional-card rounded-sm p-10 mb-6"
+              style={{
+                backgroundColor: 'rgba(0, 0, 0, 0.6)',
+                backdropFilter: 'blur(12px)',
+                border: '1px solid rgba(255, 255, 255, 0.1)',
+                boxShadow: '0 8px 32px rgba(0, 0, 0, 0.5)'
+              }}
+            >
               <div className="w-16 h-16 loading-spinner mx-auto mb-8" data-testid="loading-spinner"></div>
               
               <p className="text-lg text-white/90 mb-6 font-medium" data-testid="loading-description">

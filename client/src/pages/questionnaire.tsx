@@ -90,9 +90,10 @@ export default function Questionnaire() {
             <div 
               className="rounded-sm p-8 mb-6 max-w-3xl mx-auto"
               style={{
-                backgroundColor: '#ff0000' /* vermelho para teste */,
-                border: '3px solid #00ff00' /* borda verde para teste */,
-                minHeight: '200px' /* altura mínima para garantir visibilidade */
+                backgroundColor: 'rgba(0, 0, 0, 0.6)',
+                backdropFilter: 'blur(12px)',
+                border: '1px solid rgba(255, 255, 255, 0.1)',
+                boxShadow: '0 8px 32px rgba(0, 0, 0, 0.5)'
               }}
             >
               <h2 className="text-xl md:text-2xl font-medium mb-8 leading-relaxed text-white/95" data-testid={`question-${currentQuestion + 1}`}>

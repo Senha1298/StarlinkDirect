@@ -43,7 +43,15 @@ export default function DeviceDetection() {
               </h1>
             </div>
             
-            <div className="professional-card rounded-sm p-8 mb-6">
+            <div 
+              className="professional-card rounded-sm p-8 mb-6"
+              style={{
+                backgroundColor: 'rgba(0, 0, 0, 0.6)',
+                backdropFilter: 'blur(12px)',
+                border: '1px solid rgba(255, 255, 255, 0.1)',
+                boxShadow: '0 8px 32px rgba(0, 0, 0, 0.5)'
+              }}
+            >
               <div className="mb-8">
                 <Smartphone className="w-16 h-16 text-white mx-auto mb-6" />
               </div>
