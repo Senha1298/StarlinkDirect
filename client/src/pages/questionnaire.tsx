@@ -47,6 +47,8 @@ const questions = [
 export default function Questionnaire() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [showPopup, setShowPopup] = useState(false);
+  const [showRatingPopup, setShowRatingPopup] = useState(false);
+  const [showPromotionPopup, setShowPromotionPopup] = useState(false);
   const [, setLocation] = useLocation();
 
   const handleAnswerClick = () => {
@@ -59,8 +61,19 @@ export default function Questionnaire() {
     if (currentQuestion < questions.length - 1) {
       setCurrentQuestion(currentQuestion + 1);
     } else {
-      setLocation('/device-detection');
+      // Após a terceira pergunta, mostrar popup de avaliação
+      setShowRatingPopup(true);
     }
+  };
+
+  const handleRatingContinue = () => {
+    setShowRatingPopup(false);
+    setShowPromotionPopup(true);
+  };
+
+  const handlePromotionContinue = () => {
+    setShowPromotionPopup(false);
+    setLocation('/device-detection');
   };
 
   const question = questions[currentQuestion];
@@ -142,6 +155,20 @@ export default function Questionnaire() {
         onClose={() => setShowPopup(false)}
         type={question.popupType}
         onContinue={handleContinue}
+      />
+      
+      <Popup
+        isOpen={showRatingPopup}
+        onClose={() => setShowRatingPopup(false)}
+        type="rating"
+        onContinue={handleRatingContinue}
+      />
+      
+      <Popup
+        isOpen={showPromotionPopup}
+        onClose={() => setShowPromotionPopup(false)}
+        type="promotion"
+        onContinue={handlePromotionContinue}
       />
     </div>
   );

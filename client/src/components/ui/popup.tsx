@@ -1,10 +1,11 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { Check, Signal, Shield } from "lucide-react";
+import { Check, Signal, Shield, Star, Gift } from "lucide-react";
+import { useState } from "react";
 
 interface PopupProps {
   isOpen: boolean;
   onClose: () => void;
-  type: 'fees' | 'frustration' | 'signal';
+  type: 'fees' | 'frustration' | 'signal' | 'rating' | 'promotion';
   onContinue: () => void;
 }
 
@@ -23,12 +24,52 @@ const popupContent = {
     icon: Shield,
     title: "GLOBAL COVERAGE",
     description: "Starlink's satellite constellation provides reliable connectivity anywhere on Earth. No more signal drops in remote areas."
+  },
+  rating: {
+    icon: Star,
+    title: "RATE YOUR EXPERIENCE",
+    description: "How would you rate Starlink so far? Your feedback helps us improve our service."
+  },
+  promotion: {
+    icon: Gift,
+    title: "CONGRATULATIONS!",
+    description: "You've won our promotion! You'll receive a FREE Starlink chip with internet access. Continue to claim your prize!"
   }
 };
 
+function StarRating({ rating, onRatingChange }: { rating: number; onRatingChange: (rating: number) => void }) {
+  return (
+    <div className="flex justify-center space-x-2 mb-6" data-testid="star-rating">
+      {[1, 2, 3, 4, 5].map((star) => (
+        <button
+          key={star}
+          onClick={() => onRatingChange(star)}
+          className="w-8 h-8 transition-all duration-200 hover:scale-110"
+          data-testid={`star-${star}`}
+        >
+          <Star 
+            className={`w-8 h-8 transition-colors ${
+              star <= rating 
+                ? 'text-yellow-400 fill-yellow-400' 
+                : 'text-white/30 hover:text-white/50'
+            }`} 
+          />
+        </button>
+      ))}
+    </div>
+  );
+}
+
 export default function Popup({ isOpen, onClose, type, onContinue }: PopupProps) {
+  const [rating, setRating] = useState(1);
   const content = popupContent[type];
   const IconComponent = content.icon;
+
+  const handleRatingContinue = () => {
+    if (rating > 0) {
+      onContinue();
+    }
+  };
 
   return (
     <AnimatePresence>
@@ -63,8 +104,13 @@ export default function Popup({ isOpen, onClose, type, onContinue }: PopupProps)
               <p className="text-muted-foreground mb-6" data-testid={`popup-description-${type}`}>
                 {content.description}
               </p>
+              
+              {type === 'rating' && (
+                <StarRating rating={rating} onRatingChange={setRating} />
+              )}
+              
               <button
-                onClick={onContinue}
+                onClick={type === 'rating' ? handleRatingContinue : onContinue}
                 className="w-full bg-white text-black py-3 px-6 rounded-sm text-lg font-medium hover:bg-gray-100 transition-colors"
                 style={{
                   background: 'linear-gradient(145deg, #ffffff 0%, #f0f0f0 100%)'
