@@ -1,6 +1,6 @@
 import { useLocation } from 'wouter';
 import { motion } from 'framer-motion';
-
+import { Smartphone } from 'lucide-react';
 import Header from '@/components/header';
 import { useDeviceDetection } from '@/hooks/use-device-detection';
 
@@ -35,6 +35,9 @@ export default function DeviceDetection() {
             
             <div className="professional-card rounded-sm p-8 mb-6">
               <div className="mb-8">
+                <div className="w-32 h-32 mx-auto mb-6 glass-effect rounded-sm flex items-center justify-center">
+                  <Smartphone className="w-16 h-16 text-white" />
+                </div>
               </div>
               
               <h2 className="text-xl md:text-2xl font-medium mb-6 text-white/95" data-testid="device-question">
